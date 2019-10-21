@@ -79,6 +79,13 @@
 					</div>
 				</div>
 				
+				<div class="form-group row">                                                          
+					<div class="col-md-4" th:classappend="${#fields.hasErrors('pais')}? 'has-error'">
+					    <label>País de Origem</label>
+					    <input type="text" class="form-control input-sm" th:field="*{pais}" autofocus="autofocus"  maxlength="150"/>
+					</div>
+				</div>
+				
 				 <div class="form-group row col-md-4">
 	                        <label for="ano">Ano de Lançamento</label>
 	                        <input type="date" class="form-control" id="ano" th:field="*{ano}"

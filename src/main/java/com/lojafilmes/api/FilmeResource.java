@@ -26,12 +26,12 @@ public class FilmeResource {
 	@Autowired
 	private FilmeRepository repository;
 	
-	@PostMapping
+	@PostMapping("/filme")
 	public Filme add(@Valid @RequestBody Filme filme) {
 		return repository.save(filme);
 	}
 	
-	@GetMapping
+	@GetMapping("/filme")
 	public List<Filme> listar(){
 		return repository.findAll();
 		

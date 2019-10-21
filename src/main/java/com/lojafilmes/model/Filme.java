@@ -38,6 +38,9 @@ public class Filme implements Serializable {
 	private Date ano;
 	
 	@Column
+	private String pais;
+	
+	@Column
 	private int asin;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
@@ -84,6 +87,14 @@ public class Filme implements Serializable {
 
 	public void setAno(Date ano) {
 		this.ano = ano;
+	}
+	
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
 	}
 
 	public int getAsin() {

@@ -19,6 +19,7 @@
 									<th>ID</th>
 									<th>Título do Filme</th>
 									<th>Diretor</th>
+									<th>País de Origem</th>
 									<th>Produtora</th>
 									<th>Ações</th>
 								</tr>
@@ -30,6 +31,7 @@
 								    <td><div th:each="diretor : ${filme.diretor}" >
 										<div th:text= "${diretor.nome}" ></div>								
 									</div></td>
+									<td th:text="${filme.pais}"></td> 
 								    <td th:text="${filme.produtora.nome}"></td> 
 									<td>
 										<div class="btn-group pull-right">
