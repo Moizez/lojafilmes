@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+<title>Detalhes do Filme</title>
+
+</head>
+<body>
+		<div class="content-wrapper" layout:fragment="corpo">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong>Detalhes do Filme</strong>
+				</div>
+				
+				<div class="form-group row">
+					<div>
+							<hr class="sidebar-divider my-1">
+							<div class="row">
+							<div class="form-group col-md-2">
+							 
+								<div>
+									<img height="150px" width="130px" th:src="@{/img/poster.png}"><br>
+								</div>	
+							
+							</div>
+							<div class="form-group col-md-6">
+								<div th:field="*{filme}" ></div>
+								<label>Titulo:</label> <div th:text="${filme.titulo}" ></div>
+								<hr class="sidebar-divider my-0">
+								<label>País de Origem</label> <div th:text="${filme.pais}" ></div>
+								<hr class="sidebar-divider my-0">
+								<label>Sinopse:</label> <div th:text="${filme.sinopse}" ></div>	
+								<hr class="sidebar-divider my-0">	
+								<label>Preço:</label> <div th:text="${filme.preco}" ></div>																			
+				
+							</div>
+								<div class="form-group col-md-4">
+									<label>Ano de Lançamento:</label> <div th:text="${filme.ano}" ></div>			
+									<hr class="sidebar-divider my-0">						
+									<label>Produtora: </label><div th:text="${filme.produtora.nome}" ></div>
+									<hr class="sidebar-divider my-0">
+									<label>Gênero: </label><div th:text="${filme.genero.nome}" ></div>
+									<hr class="sidebar-divider my-0">
+									<label>Diretor:</label>
+									<div th:each="diretor : ${filme.diretor}" >
+										<div th:text= "${diretor.nome}" ></div>								
+									</div>
+							
+							</div>
+							</div>
+								
+							<hr class="sidebar-divider my-0">
+						
+					</div>
+					
+				</div>
+				
+				<div class="form-group row">
+					<a class="btn btn-sm btn-info" th:href="@{/filme/listar}" >Voltar</a>
+				</div>
+
+			
+		</div>
+		</div>
+
+	
+</body>
+</html>
