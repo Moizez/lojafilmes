@@ -1,4 +1,4 @@
-package com.lojafilmes.controller;
+package com.lojafilmes.api;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ import com.lojafilmes.model.Filme;
 import com.lojafilmes.repository.FilmeRepository;
 
 @RestController
-@RequestMapping("/filme")
-public class APIController {
+@RequestMapping("/api")
+public class FilmeResource {
 	
 	@Autowired
 	private FilmeRepository repository;
