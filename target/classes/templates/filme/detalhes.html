@@ -17,31 +17,31 @@
 							<hr class="sidebar-divider my-1">
 							<div class="row">
 							
-							<div class="form-group col-md-7">							 
+							<div class="form-group col-md-3">							 
 								<div>
-									<img height="150px" width="100px" th:src="@{/filme/imagem/{id}(id=${filme.id})}"/>
+									<img height="320px" width="210px" th:src="@{/filme/imagem/{id}(id=${filme.id})}"/>
 								</div>							
 							</div>
 							
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-3">
 								<div th:field="*{filme}" ></div>
-								<label>Titulo:</label> <div th:text="${filme.titulo}" ></div>
+								<label><b>Titulo:</b></label> <div th:text="${filme.titulo}" ></div>
 								<hr class="sidebar-divider my-0">
-								<label>País de Origem</label> <div th:text="${filme.pais}" ></div>
+								<label><b>País de Origem:</b></label> <div th:text="${filme.pais}" ></div>
 								<hr class="sidebar-divider my-0">
-								<label>Sinopse:</label> <div th:text="${filme.sinopse}" ></div>	
+								<label><b>Sinopse:</b></label> <div th:text="${filme.sinopse}" ></div>	
 								<hr class="sidebar-divider my-0">	
-								<label>Preço:</label> <div th:text="${filme.preco}" ></div>																			
+								<label><b>Preço:</b></label> <div th:text="${filme.preco}" ></div>																			
 				
 							</div>
 								<div class="form-group col-md-4">
-									<label>Ano de Lançamento:</label> <div th:text="${filme.ano}" ></div>			
+									<label><b>Ano de Lançamento:</b></label> <div th:text="${filme.ano}" ></div>			
 									<hr class="sidebar-divider my-0">						
-									<label>Produtora: </label><div th:text="${filme.produtora.nome}" ></div>
+									<label><b>Produtora:</b></label><div th:text="${filme.produtora.nome}" ></div>
 									<hr class="sidebar-divider my-0">
-									<label>Gênero: </label><div th:text="${filme.genero.nome}" ></div>
+									<label><b>Gênero:</b></label><div th:text="${filme.genero.nome}" ></div>
 									<hr class="sidebar-divider my-0">
-									<label>Diretor:</label>
+									<label><b>Diretor:</b></label>
 									<div th:each="diretor : ${filme.diretor}" >
 										<div th:text= "${diretor.nome}" ></div>								
 									</div>

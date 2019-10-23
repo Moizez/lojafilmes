@@ -14,7 +14,7 @@ layout:decorate="~{layout}">
 				<div class="panel-heading">
 					<strong>Cadastro de Diretores</strong>
 				</div>
-			<form class="container" method="post" th:object="${diretor}"
+			<form enctype= "multipart/form-data" class="container" method="post" th:object="${diretor}"
 				th:action="@{/diretor/save}">
 
 				<!--Input responsável em guardar o id-->
@@ -45,6 +45,12 @@ layout:decorate="~{layout}">
 					</div>
 				</div>
 				
+				<div class="custom-file row col-md-4" th:classappend="${#fields.hasErrors('imagem')}? 'has-error'">
+					<input type="file" class="custom-file-input" id="customFile" name="file"/>
+    				
+    				<label class="custom-file-label" for="customFile">Escolha a foto</label>
+  				</div>
+				
 				 <div class="form-group row col-md-4">
 	                        <label for="dataNascimento">Data de Nascimento</label>
 	                        <input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"
@@ -62,8 +68,8 @@ layout:decorate="~{layout}">
 				</div>
 
 				<div class="form-group row">
-					<button type="submit" class="btn btn-primary">Cadastrar</button>
-					<button><a th:href="@{/diretor/listar}" class="btn btn-sm btn-danger">Cancelar</a></button>
+					<button type="submit" class="btn btn-m btn-primary">Cadastrar</button>
+					<button th:href="@{/diretor/listar}" style="margin-left: 5px" class="btn btn-m btn-danger">Cancelar</button>
 				</div>
 				
 				

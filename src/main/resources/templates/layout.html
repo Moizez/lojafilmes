@@ -85,6 +85,21 @@
 	<!-- Page level custom scripts -->
 	<script th:src="@{/js/demo/chart-area-demo.js}"></script>
 	<script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+	<script type="text/javascript">
+	
+		var url = '';
+		
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+		
+		$(document).ready(function(){
+		    $(".navbar-toggle").click(function(){
+		        $(".sidebar").toggleClass("sidebar-open");
+		    })
+		});
+
+	</script>
 
 
 </body>

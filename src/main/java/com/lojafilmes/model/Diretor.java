@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
@@ -28,6 +29,9 @@ public class Diretor implements Serializable{
 	@Column(nullable = false, length = 100)
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
+	
+	@Lob
+	private byte[] imagem;
 	
 	//@Past(message="Data não adequada.")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -53,6 +57,14 @@ public class Diretor implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
 	}
 
 	public Date getDataNascimento() {

@@ -26,6 +26,9 @@ public class Genero implements Serializable {
 	@NotBlank(message = "Nome é uma informação obrigatória.")
 	private String nome;
 	
+	@Column
+	private String info;
+	
 	@OneToMany(mappedBy="genero")
 	private List<Filme> filmes;
 
@@ -43,6 +46,14 @@ public class Genero implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
 	}
 
 	public List<Filme> getFilmes() {
