@@ -43,7 +43,7 @@ public class GeneroController {
 	@GetMapping("/listar")
 	private ModelAndView findAll() {
 		ModelAndView mv = new ModelAndView("genero/listar");
-        mv.addObject("generos", generoService.listaAll());
+        mv.addObject("generos", generoService.findAll());
         
         return mv;
 	}

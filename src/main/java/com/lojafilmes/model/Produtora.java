@@ -67,9 +67,6 @@ public class Produtora implements Serializable{
 
 	public void setPais(String pais) {
 		this.pais = pais;
-	}
-	
-	
-	
+	}	
 
 }

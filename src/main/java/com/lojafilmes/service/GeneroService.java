@@ -18,7 +18,7 @@ public class GeneroService {
         repository.saveAndFlush(genero);
     }
 	
-	public List<Genero> listaAll(){
+	public List<Genero> findAll(){
 		return repository.findAll();
 	}
 	

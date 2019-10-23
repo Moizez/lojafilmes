@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -42,6 +43,9 @@ public class Filme implements Serializable {
 	
 	@Column
 	private int asin;
+	
+	@Lob
+	private byte[] imagem;
 	
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
@@ -135,6 +139,14 @@ public class Filme implements Serializable {
 
 	public void setDiretor(Diretor diretor) {
 		this.diretor = diretor;
+	}
+	
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
 	}
 
 	public static long getSerialversionuid() {

@@ -14,11 +14,11 @@ public class ProdutoraService {
 	@Autowired
 	private ProdutoraRepository repository;
 	
-	public void save(Produtora produtora) {
-        repository.saveAndFlush(produtora);
+	public Produtora save(Produtora produtora) {
+        return repository.saveAndFlush(produtora);
     }
 
-	public List<Produtora> listaAll(){
+	public List<Produtora> findAll(){
 		return repository.findAll();
 	}
 	

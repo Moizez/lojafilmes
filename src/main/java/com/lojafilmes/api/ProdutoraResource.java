@@ -16,66 +16,72 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lojafilmes.model.Filme;
-import com.lojafilmes.repository.FilmeRepository;
+import com.lojafilmes.model.Produtora;
+import com.lojafilmes.service.ProdutoraService;
 
 @RestController
 @RequestMapping("/api")
-public class FilmeResource {
+public class ProdutoraResource {
 	
 	@Autowired
-	private FilmeRepository repository;
+	private ProdutoraService service;
 	
-	@PostMapping("/filme")
-	public Filme add(@Valid @RequestBody Filme filme) {
-		return repository.save(filme);
+	
+	@PostMapping("/produtora")
+	public Produtora add(@RequestBody Produtora produtora) {
+		return service.save(produtora);
 	}
 	
-	@GetMapping("/filme")
-	public List<Filme> listar(){
-		return repository.findAll();
+	@GetMapping("/produtora")
+	public List<Produtora> listar(){
+		return service.findAll();
 		
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Filme> buscar(@PathVariable Long id){
-		Filme filme = repository.getOne(id);
+	public ResponseEntity<Produtora> buscar(@PathVariable Long id){
+		Produtora produtora = service.findOne(id);
 		
-		if (filme == null) {
+		if (produtora == null) {
 			return ResponseEntity.notFound().build();
 			
 		}
-		return ResponseEntity.ok(filme);
+		return ResponseEntity.ok(produtora);
 		
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Filme> update(@PathVariable Long id,
-			@Valid @RequestBody Filme filme){
-		Filme filmeExist = repository.getOne(id);
+	public ResponseEntity<Produtora> update(@PathVariable Long id,
+			@Valid @RequestBody Produtora produtora){
+		Produtora prod = service.findOne(id);
 		
-		if (filmeExist == null) {
+		if (prod == null) {
 			return ResponseEntity.notFound().build();
 		}
 		
-		BeanUtils.copyProperties(filme, filmeExist, "id");
+		BeanUtils.copyProperties(produtora, prod, "id");
 		
-		filmeExist = repository.save(filmeExist);
+		prod = service.save(prod);
 		
-		return ResponseEntity.ok(filmeExist);
+		return ResponseEntity.ok(prod);
 		
 	}
 	
 	@DeleteMapping("/{id}")
+	public void delete(@PathVariable long id) {
+		service.delete(id);
+	}
+	
+	/*@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remover(@PathVariable Long id){
-		Filme filme = repository.getOne(id);
+		Produtora produtora = repository.getOne(id);
 		
-		if (filme == null) {
+		if (produtora == null) {
 			return ResponseEntity.notFound().build();
 		}
-		repository.delete(filme);
+		repository.delete(produtora);
 		return ResponseEntity.noContent().build();
 		
-	}
+	}*/
 
 }

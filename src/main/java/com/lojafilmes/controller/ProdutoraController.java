@@ -43,7 +43,7 @@ public class ProdutoraController {
 	@GetMapping("/listar")
 	private ModelAndView findAll() {
 		ModelAndView mv = new ModelAndView("produtora/listar");
-        mv.addObject("produtoras", produtoraService.listaAll());
+        mv.addObject("produtoras", produtoraService.findAll());
         
         return mv;
 	}
