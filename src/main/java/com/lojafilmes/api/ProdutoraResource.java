@@ -68,20 +68,15 @@ public class ProdutoraResource {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
-		service.delete(id);
-	}
-	
-	/*@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remover(@PathVariable Long id){
-		Produtora produtora = repository.getOne(id);
+		Produtora produtora = service.findOne(id);
 		
 		if (produtora == null) {
 			return ResponseEntity.notFound().build();
 		}
-		repository.delete(produtora);
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 		
-	}*/
+	}
 
 }
