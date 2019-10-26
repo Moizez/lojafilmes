@@ -11,6 +11,9 @@
 				<div class="panel-heading">
 					<strong>Cadastro de Filmes</strong>
 				</div>
+				
+			<div th:replace="fragmentos/alert"></div>
+				
 			<form enctype= "multipart/form-data" class="container" method="post" th:object="${filme}"
 				th:action="@{/filme/save}">
 
@@ -65,7 +68,7 @@
 					</div>
 				</div>
 				
-				<div class="custom-file row col-md-4" th:classappend="${#fields.hasErrors('imagem')}? 'has-error'">
+				<div class="custom-file col-md-3" th:classappend="${#fields.hasErrors('imagem')}? 'has-error'">
 					<input type="file" class="custom-file-input" id="customFile" name="file"/>
     				
     				<label class="custom-file-label" for="customFile">Escolha o pôster</label>
@@ -108,7 +111,7 @@
 	                               data-mask-reverse="true" th:field="*{preco}"/>
 					</div>
 				</div>
-
+				
 				<div class="form-group row">
 					<button type="submit" class="btn btn-m btn-primary">Cadastrar</button>
 					<a th:href="@{/filme/listar}" style="margin-left: 5px" class="btn btn-m btn-danger">Cancelar</a>

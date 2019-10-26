@@ -31,8 +31,8 @@ public class FilmeService {
 		repository.deleteById(id);
 	}
 	
-	/*public List<Filme> findByPedido(Long id) {
-		return repository.findByPedido(id);
-	}*/
+	public List<Filme> findByTitulo(String titulo) {
+		return repository.findByTituloIgnoreCaseContaining(titulo);
+	}	
 
 }

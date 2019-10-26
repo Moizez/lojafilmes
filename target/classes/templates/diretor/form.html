@@ -45,7 +45,7 @@ layout:decorate="~{layouts/layout_adm}">
 					</div>
 				</div>
 				
-				<div class="custom-file row col-md-4" th:classappend="${#fields.hasErrors('imagem')}? 'has-error'">
+				<div class="custom-file col-md-3" th:classappend="${#fields.hasErrors('imagem')}? 'has-error'">
 					<input type="file" class="custom-file-input" id="customFile" name="file"/>
     				
     				<label class="custom-file-label" for="customFile">Escolha a foto</label>

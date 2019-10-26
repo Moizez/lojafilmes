@@ -29,5 +29,9 @@ public class DiretorService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+    
+    public List<Diretor> findByNome(String nome) {
+		return repository.findByNomeIgnoreCaseContaining(nome);
+	}	
 
 }

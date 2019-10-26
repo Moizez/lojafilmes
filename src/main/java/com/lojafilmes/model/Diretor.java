@@ -2,7 +2,7 @@ package com.lojafilmes.model;
 
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,6 +15,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Diretor implements Serializable{
@@ -34,8 +35,9 @@ public class Diretor implements Serializable{
 	private byte[] imagem;
 	
 	//@Past(message="Data não adequada.")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dataNascimento;
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "data_nascimento", columnDefinition = "DATE")
+	private LocalDate dataNascimento;
 	
 	@Column(length = 100)
 	private String pais;
@@ -67,14 +69,14 @@ public class Diretor implements Serializable{
 		this.imagem = imagem;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
+
 	public String getPais() {
 		return pais;
 	}

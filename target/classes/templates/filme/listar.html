@@ -9,8 +9,97 @@
 		<div class="content-wrapper" layout:fragment="corpo">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-			<strong>Filmes</strong>
+			<strong>Buscar por</strong>
 				</div>
+				
+				<p>
+	                <i class="oi oi-magnifying-glass"></i><span></span>
+	                <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseTitulo"
+	                        aria-controls="collapseTitulo">Nome
+	                </button>
+	                <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseDiretor"
+	                        aria-controls="collapseDiretor">Diretor
+	                </button>
+	                
+	                <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#collapseGenero"
+	                        aria-controls="collapseGenero">Gênero
+	                </button>
+	                
+	                <button class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseData"
+	                        aria-controls="collapseData">Data
+	                </button>
+	            </p>
+	            <div class="row">
+	                <div class="col">
+	                    <div class="collapse" id="collapseTitulo">
+	
+	                        <nav class="navbar navbar-light bg-light">
+	                            <form class="form-inline" method="POST" th:action="@{/filme/buscar/titulo}">
+	                                <input class="form-control mr-sm-2" type="search" placeholder="Nome do filme" aria-label="Search"
+	                                       th:name="titulo" />
+	                                <button class="btn btn-info my-2 my-sm-0">Buscar</button>
+	                            </form>
+	                        </nav>
+	
+	                    </div>
+	                </div>
+	            </div>
+				<div class="row">
+	                <div class="col">
+	                    <div class="collapse" id="collapseDiretor">
+	
+	                        <nav class="navbar navbar-light bg-light">
+	                            <form class="form-inline" method="POST" th:action="@{/filme/buscar/nome}">
+	                                <input class="form-control mr-sm-2" type="search" placeholder="Nome do diretor" aria-label="Search"
+	                                       th:name="nome" />
+	                                <button class="btn btn-info my-2 my-sm-0">Buscar</button>
+	                            </form>
+	                        </nav>
+	
+	                    </div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	                <div class="col">
+	                    <div class="collapse" id="collapseGenero">
+	
+	                        <nav class="navbar navbar-light bg-light">
+	                            <form class="form-inline" method="GET" th:action="@{/diretor/buscar/nome}">
+	                                <select class="form-control mr-sm-2" th:name="id" aria-label="Search">
+	                                    <option value="">Gênero</option>
+	                                    <option th:each="genero : ${generos}" th:value="${genero.id}" th:text="${genero.nome}"></option>
+	                                </select>
+	                                <button class="btn btn-info my-2 my-sm-0">Buscar</button>
+	                            </form>
+	                        </nav>
+	
+	                    </div>
+	                </div>
+	            </div>
+	            
+	            <div class="row">
+	                <div class="col">
+	                    <div class="collapse" id="collapseData">
+	
+	                        <nav class="navbar navbar-light bg-light">
+	                            <form class="form-inline" method="GET" th:action="@{/filme/buscar/data}">
+	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
+	                                       th:name="entrada" />
+	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
+	                                       th:name="saida" />
+	                                <button class="btn btn-light my-2 my-sm-0">Buscar</button>
+	                            </form>
+	                        </nav>
+	
+	                    </div>
+	                </div>
+	            </div>
+	            
+	            <div class="panel-heading">
+					<strong>Filmes</strong>
+				</div>
+				
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table class="table table-sm table-striped table-hover table-bordered">
@@ -21,8 +110,8 @@
 									<th>Título do Filme</th>
 									<th>Sinopse</th>
 									<th>Diretor</th>
-									<th>País de Origem</th>
 									<th>Produtora</th>
+									<th>Preço</th>
 									<th>Ações</th>
 								</tr>
 							</thead>
@@ -42,8 +131,8 @@
 								    <td><div th:each="diretor : ${filme.diretor}" >
 										<div th:text= "${diretor.nome}" ></div>								
 									</div></td>
-									<td th:text="${filme.pais}"></td> 
 								    <td th:text="${filme.produtora.nome}"></td> 
+								    <td th:text="|R$ ${{filme.preco}}|"></td>
 									<td>
 										<div class="btn-group pull-right">
 											<a class="btn btn-sm btn-info" th:href="@{/filme/details/{id}(id=${filme.id})}" >Detalhes</a>

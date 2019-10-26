@@ -1,7 +1,8 @@
 package com.lojafilmes.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,13 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.format.annotation.NumberFormat.Style;
+
 
 @Entity
 public class Filme implements Serializable {
@@ -35,8 +39,9 @@ public class Filme implements Serializable {
 	@NotBlank(message = "Sinopse é uma informação obrigatória.")
 	private String sinopse;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date ano;
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "ano", columnDefinition = "DATE")
+	private LocalDate ano;
 	
 	@Column
 	private String pais;
@@ -85,14 +90,14 @@ public class Filme implements Serializable {
 		this.sinopse = sinopse;
 	}
 
-	public Date getAno() {
+	public LocalDate getAno() {
 		return ano;
 	}
 
-	public void setAno(Date ano) {
+	public void setAno(LocalDate ano) {
 		this.ano = ano;
 	}
-	
+
 	public String getPais() {
 		return pais;
 	}
@@ -148,7 +153,7 @@ public class Filme implements Serializable {
 	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
 	}
-
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

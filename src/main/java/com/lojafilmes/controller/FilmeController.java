@@ -1,6 +1,7 @@
 package com.lojafilmes.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -11,14 +12,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lojafilmes.model.Diretor;
 import com.lojafilmes.model.Filme;
+import com.lojafilmes.model.Genero;
 import com.lojafilmes.service.DiretorService;
 import com.lojafilmes.service.FilmeService;
 import com.lojafilmes.service.GeneroService;
@@ -32,7 +37,7 @@ public class FilmeController {
 	private FilmeService filmeService;
 	
 	@Autowired
-	private DiretorService diretorServicer;
+	private DiretorService diretorService;
 
 	@Autowired
 	private GeneroService generoService;
@@ -44,7 +49,7 @@ public class FilmeController {
 	public ModelAndView add(Filme filme) {
 		
 		ModelAndView mv = new ModelAndView("filme/form");
-		mv.addObject("diretores", diretorServicer.findAll());
+		mv.addObject("diretores", diretorService.findAll());
 		mv.addObject("generos", generoService.findAll());
 		mv.addObject("produtoras", produtoraService.findAll());
 		mv.addObject("filme", filme);
@@ -53,7 +58,7 @@ public class FilmeController {
 	}
 	
 	@PostMapping("/save")
-	public ModelAndView save(@Valid Filme filme, @RequestParam("file")MultipartFile file, BindingResult result) throws IOException {
+	public ModelAndView save(@Valid Filme filme, @RequestParam("file")MultipartFile file, RedirectAttributes attr, BindingResult result) throws IOException {
 		
 		if (result.hasErrors()) {
 			return add(filme);
@@ -64,7 +69,7 @@ public class FilmeController {
 		}
 		
 		filmeService.save(filme);
-		
+		attr.addFlashAttribute("success", "Filme inserido com sucesso.");
 		return findAll();
 	}
 	
@@ -100,6 +105,7 @@ public class FilmeController {
 		return findAll();
 	}
 	
+	//EXIBIR IMAGEM
 	@RequestMapping(path = {"/imagem/{id}"}, produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getImagem(@PathVariable("id") Long id){
 		Filme filme = filmeService.findOne(id);
@@ -107,6 +113,35 @@ public class FilmeController {
 		final org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
 		headers.setContentType(MediaType.IMAGE_JPEG);
 		return new ResponseEntity<byte[]>(imagem, headers, HttpStatus.OK);
+	}
+	
+	//MÉTODOS DE BUSCA
+	@PostMapping("/buscar/titulo")
+	public ModelAndView findByTitulo (@RequestParam ("titulo") String titulo) {
+		ModelAndView mv = new ModelAndView("filme/listar");
+		mv.addObject("filmes", filmeService.findByTitulo(titulo));
+		return mv;		
+	}
+	
+	@PostMapping("/buscar/nome")
+	public ModelAndView findByName (@RequestParam ("nome") String nome) {
+		ModelAndView mv = new ModelAndView("filme/listar");
+		mv.addObject("diretores", diretorService.findByNome(nome));
+		return mv;		
+	}
+	
+	/*@GetMapping("/buscar/genero")
+	public String getPorGenero(@RequestParam("id") Long id, ModelMap model) {
+		model.addAttribute("filme", filmeService.buscarPorCargo(id));
+		return "funcionario/lista";
+	}	
+	
+  	*/
+	
+	//PEGAR TODOS OS DIRETORES
+	@ModelAttribute("generos")
+	public List<Genero> getGeneros() {
+		return generoService.findAll();
 	}
 	
 }
