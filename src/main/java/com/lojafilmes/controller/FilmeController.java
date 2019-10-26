@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.lojafilmes.model.Diretor;
 import com.lojafilmes.model.Filme;
 import com.lojafilmes.model.Genero;
 import com.lojafilmes.service.DiretorService;
@@ -115,30 +114,31 @@ public class FilmeController {
 		return new ResponseEntity<byte[]>(imagem, headers, HttpStatus.OK);
 	}
 	
-	//MÉTODOS DE BUSCA
+	//MÉTODO DE BUSCA = FILMES POR NOME
 	@PostMapping("/buscar/titulo")
-	public ModelAndView findByTitulo (@RequestParam ("titulo") String titulo) {
+	public ModelAndView findByFilme (@RequestParam ("titulo") String titulo) {
 		ModelAndView mv = new ModelAndView("filme/listar");
 		mv.addObject("filmes", filmeService.findByTitulo(titulo));
 		return mv;		
 	}
 	
-	@PostMapping("/buscar/nome")
-	public ModelAndView findByName (@RequestParam ("nome") String nome) {
+	//MÉTODO DE BUSCA = FILMES POR DIRETOR
+	@PostMapping("/buscar/diretor")
+	public ModelAndView findByDiretor (@RequestParam ("nome") String nome) {
 		ModelAndView mv = new ModelAndView("filme/listar");
 		mv.addObject("diretores", diretorService.findByNome(nome));
 		return mv;		
 	}
 	
-	/*@GetMapping("/buscar/genero")
-	public String getPorGenero(@RequestParam("id") Long id, ModelMap model) {
-		model.addAttribute("filme", filmeService.buscarPorCargo(id));
-		return "funcionario/lista";
+	//MÉTODO DE BUSCA = FILMES POR GÊNERO
+	@PostMapping("/buscar/genero")
+	public ModelAndView findByGenero (@RequestParam ("nome") String nome) {
+		ModelAndView mv = new ModelAndView("filme/listar");
+		mv.addObject("generos", generoService.findByNome(nome));
+		return mv;		
 	}	
 	
-  	*/
-	
-	//PEGAR TODOS OS DIRETORES
+  	//PEGAR TODOS OS GÊNEROS
 	@ModelAttribute("generos")
 	public List<Genero> getGeneros() {
 		return generoService.findAll();
