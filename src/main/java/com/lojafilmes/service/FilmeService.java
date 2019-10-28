@@ -33,6 +33,10 @@ public class FilmeService {
 	
 	public List<Filme> findByTitulo(String titulo) {
 		return repository.findByTituloIgnoreCaseContaining(titulo);
-	}	
+	}
+
+	/*public List<Filme> findByAno(String ano) {
+		return repository.findByAnoIgnoreCaseContaining(ano);
+	}	*/
 
 }

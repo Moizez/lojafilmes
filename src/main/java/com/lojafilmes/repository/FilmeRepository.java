@@ -14,4 +14,9 @@ public interface FilmeRepository extends JpaRepository<Filme, Long>{
 	@Query
 	public List<Filme> findByTituloIgnoreCaseContaining(String nome);
 	
+	/*@Query("select year(f.ano) from filme f where year(f.ano) like %?1%;")
+	public List<Filme> findByAnoIgnoreCaseContaining(String ano);*/
+	
+	
+	
 }

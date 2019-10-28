@@ -49,7 +49,7 @@
 	                    <div class="collapse" id="collapseDiretor">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="POST" th:action="@{/filme/buscar/diretor}">
+	                            <form class="form-inline" method="POST" th:action="@{/filme/buscar}">
 	                                <input class="form-control mr-sm-2" type="search" placeholder="Nome do diretor" aria-label="Search"
 	                                       th:name="nome" />
 	                                <button class="btn btn-info my-2 my-sm-0">Buscar</button>
@@ -65,7 +65,7 @@
 	                    <div class="collapse" id="collapseGenero">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="POST" th:action="@{/diretor/buscar/genero}">
+	                            <form class="form-inline" method="POST" th:action="@{/filme/buscar/nome}">
 	                                <select class="form-control mr-sm-2" th:name="nome" aria-label="Search">
 	                                    <option value="">Gênero</option>
 	                                    <option th:each="genero : ${generos}" th:value="${genero.id}" th:text="${genero.nome}"></option>
@@ -83,12 +83,10 @@
 	                    <div class="collapse" id="collapseData">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="GET" th:action="@{/filme/buscar/data}">
+	                            <form class="form-inline" method="GET" th:action="@{/filme/buscar/}">
 	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
-	                                       th:name="entrada" />
-	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
-	                                       th:name="saida" />
-	                                <button class="btn btn-light my-2 my-sm-0">Buscar</button>
+	                                       th:name="ano" />
+	                                <button class="btn btn-info my-2 my-sm-0">Buscar</button>
 	                            </form>
 	                        </nav>
 	

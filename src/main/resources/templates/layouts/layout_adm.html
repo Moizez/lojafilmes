@@ -86,7 +86,14 @@
 	<!-- Page level custom scripts -->
 	<script th:src="@{/js/demo/chart-area-demo.js}"></script>
 	<script th:src="@{/js/demo/chart-pie-demo.js}"></script>
-	<script type="text/javascript">
+	
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">	
+
 	
 		var url = '';
 		

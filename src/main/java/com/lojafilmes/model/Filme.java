@@ -2,15 +2,13 @@ package com.lojafilmes.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -57,13 +55,15 @@ public class Filme implements Serializable {
 	private double preco;
 	
 	@ManyToOne
+	@JoinColumn(name="filme_produtora")
 	public Produtora produtora;
 	
 	@ManyToOne
+	@JoinColumn(name="filme_genero")
 	public Genero genero;
 	
 	@ManyToOne
-	@JoinTable(name="filme_diretor")
+	@JoinColumn(name="filme_diretor")
 	public Diretor diretor;
 	
 	public Long getId() {
