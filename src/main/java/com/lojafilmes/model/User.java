@@ -1,20 +1,34 @@
 package com.lojafilmes.model;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements UserDetails, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -40,9 +54,10 @@ public class User {
     
     @Column(name = "active")
     private int active;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany
+	@JsonIgnore
+	private Set<Role> roles = new HashSet<Role>();
 	public int getId() {
 		return id;
 	}
@@ -84,6 +99,37 @@ public class User {
 	}
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+		authorities.addAll(getRoles());
+		return authorities;
+	}
+	@Override
+	public String getUsername() {
+		return email;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
 	}
     
 }
