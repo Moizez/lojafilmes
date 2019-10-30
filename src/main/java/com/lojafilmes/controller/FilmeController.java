@@ -115,23 +115,23 @@ public class FilmeController {
 	}
 	
 	//MÉTODO DE BUSCA = FILMES POR NOME
-	@PostMapping("/buscar/titulo")
+	@GetMapping("/buscar/titulo")
 	public ModelAndView findByFilme (@RequestParam ("titulo") String titulo) {
 		ModelAndView mv = new ModelAndView("filme/listar");
 		mv.addObject("filmes", filmeService.findByTitulo(titulo));
 		return mv;		
 	}
 	
-	/*/MÉTODO DE BUSCA = FILMES POR DIRETOR
-	@PostMapping("/buscar/")
+	//MÉTODO DE BUSCA = FILMES POR DIRETOR
+	@GetMapping("/buscar/diretor")
 	public ModelAndView findByDiretor (@RequestParam ("nome") String nome) {
 		ModelAndView mv = new ModelAndView("filme/listar");
 		mv.addObject("diretores", diretorService.findByNome(nome));
 		return mv;		
-	}*/
+	}
 	
 	//MÉTODO DE BUSCA = FILMES POR GÊNERO
-	@PostMapping("**/nome")
+	@GetMapping("buscar/genero")
 	public ModelAndView findByGenero (@RequestParam ("nome") String nome) {
 		ModelAndView mv = new ModelAndView("filme/listar");
 		mv.addObject("generos", generoService.findByNome(nome));

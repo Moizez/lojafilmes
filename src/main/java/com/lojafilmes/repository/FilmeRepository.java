@@ -12,7 +12,7 @@ import com.lojafilmes.model.Filme;
 public interface FilmeRepository extends JpaRepository<Filme, Long>{
 	
 	@Query
-	public List<Filme> findByTituloIgnoreCaseContaining(String nome);
+	public List<Filme> findByTituloIgnoreCaseContaining(String titulo);
 	
 	/*@Query("select year(f.ano) from filme f where year(f.ano) like %?1%;")
 	public List<Filme> findByAnoIgnoreCaseContaining(String ano);*/

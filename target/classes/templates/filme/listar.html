@@ -14,8 +14,8 @@
 				
 				<p>
 	                <i class="oi oi-magnifying-glass"></i><span></span>
-	                <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseTitulo"
-	                        aria-controls="collapseTitulo">Nome
+	                <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseFilme"
+	                        aria-controls="collapseFilme">Nome
 	                </button>
 	                <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseDiretor"
 	                        aria-controls="collapseDiretor">Diretor
@@ -31,10 +31,10 @@
 	            </p>
 	            <div class="row">
 	                <div class="col">
-	                    <div class="collapse" id="collapseTitulo">
+	                    <div class="collapse" id="collapseFilme">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="POST" th:action="@{/filme/buscar/titulo}">
+	                            <form class="form-inline" method="GET" th:action="@{/filme/buscar/titulo}">
 	                                <input class="form-control mr-sm-2" type="search" placeholder="Nome do filme" aria-label="Search"
 	                                       th:name="titulo" />
 	                                <button class="btn btn-info my-2 my-sm-0">Buscar</button>
@@ -49,7 +49,7 @@
 	                    <div class="collapse" id="collapseDiretor">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="POST" th:action="@{/filme/buscar}">
+	                            <form class="form-inline" method="GET" th:action="@{/filme/buscar/diretor}">
 	                                <input class="form-control mr-sm-2" type="search" placeholder="Nome do diretor" aria-label="Search"
 	                                       th:name="nome" />
 	                                <button class="btn btn-info my-2 my-sm-0">Buscar</button>
@@ -65,7 +65,7 @@
 	                    <div class="collapse" id="collapseGenero">
 	
 	                        <nav class="navbar navbar-light bg-light">
-	                            <form class="form-inline" method="POST" th:action="@{/filme/buscar/nome}">
+	                            <form class="form-inline" method="GET" th:action="@{/filme/buscar/genero}">
 	                                <select class="form-control mr-sm-2" th:name="nome" aria-label="Search">
 	                                    <option value="">Gênero</option>
 	                                    <option th:each="genero : ${generos}" th:value="${genero.id}" th:text="${genero.nome}"></option>
