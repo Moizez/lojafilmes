@@ -27,7 +27,8 @@
 							<h1>Login</h1>
 						 </div>
 					</div>
-                   <form action="/login" method="POST" name="login">
+                   <form th:action="@{/login}" method="POST" name="login">
+                                 
                            <div class="form-group">
                               <label for="exampleInputEmail1">E-mail</label>
                               <input type="email" name="username"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entre com seu e-mail">
@@ -40,7 +41,7 @@
                               <p class="text-center">Ao se inscrever, você concorda com nossos <a href="#">Termos de uso</a></p>
                            </div>
                            <div class="col-md-12 text-center ">
-                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Entrar</button>
                            </div>                           
                            <hr class="hr-or">                                
                         </form>                 

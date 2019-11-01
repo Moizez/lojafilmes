@@ -1,6 +1,5 @@
 package com.lojafilmes.service;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +15,6 @@ import org.springframework.stereotype.Service;
 
 import com.lojafilmes.model.Role;
 import com.lojafilmes.model.User;
-import com.lojafilmes.model.Usuario;
-import com.lojafilmes.repository.RoleRepository;
 import com.lojafilmes.repository.UserRepository;
 
 @Service
